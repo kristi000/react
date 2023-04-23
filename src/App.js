@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react'
-import CityInput from './components/CityInput'
-import DataDisplay from './components/DataDisplay'
+import { useRef, useState } from "react"
+import CityInput from "./components/CityInput"
+import DataDisplay from "./components/DataDisplay"
 
-const KEY = 'e486677af3184a71a5b193143232204'
+const KEY = "e486677af3184a71a5b193143232204"
 
 function App() {
   const [input, setInput] = useState()
@@ -15,7 +15,7 @@ function App() {
   const handleSearch = async (e) => {
     e.preventDefault()
     if (!input) {
-      alert('o bythqir shkruj i llaf aty')
+      alert("o bythqir shkruj i llaf aty")
     }
 
     setLoading(true)
@@ -34,17 +34,21 @@ function App() {
   }
 
   return (
-    <div className='App'>
-      <h1>hello</h1>
-      <CityInput
-        input={input}
-        setInput={setInput}
-        handleSearch={handleSearch}
-      />
-      {loading && <div>patate</div>}
-      {datafromkarlliku && (
-        <DataDisplay input={input} datafromkarlliku={datafromkarlliku} />
-      )}
+    <div className="app">
+      <div className="container">
+        <div className="content">
+          <h1>Weather App</h1>
+          <CityInput
+            input={input}
+            setInput={setInput}
+            handleSearch={handleSearch}
+          />
+          {loading && <div>patate</div>}
+          {datafromkarlliku && (
+            <DataDisplay input={input} datafromkarlliku={datafromkarlliku} />
+          )}
+        </div>
+      </div>
     </div>
   )
 }
