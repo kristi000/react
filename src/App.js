@@ -1,6 +1,7 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import CityInput from "./components/CityInput"
 import DataDisplay from "./components/DataDisplay"
+import CityOptions from "./components/CityOptions"
 
 const KEY = "e486677af3184a71a5b193143232204"
 
@@ -8,9 +9,10 @@ function App() {
   const [input, setInput] = useState()
   const [datafromkarlliku, setDatafromkarlliku] = useState()
   const [loading, setLoading] = useState(false)
+  const [selectedOption, setSelectedOption] = useState("")
 
   const city = input
-  const url = `http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${city}&aqi=no`
+  const weatherUrl = `http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${city}&aqi=no`
 
   const handleSearch = async (e) => {
     e.preventDefault()
@@ -19,7 +21,7 @@ function App() {
     }
 
     setLoading(true)
-    fetch(url)
+    fetch(weatherUrl)
       .then((res) => {
         if (!res.ok) throw new Error()
         return res.json()
@@ -32,6 +34,24 @@ function App() {
         setLoading(false)
       })
   }
+
+  useEffect(() => {
+    const weatherUrl = `http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${selectedOption}&aqi=no`
+
+    setLoading(true)
+    fetch(weatherUrl)
+      .then((res) => {
+        if (!res.ok) throw new Error()
+        return res.json()
+      })
+      .then((data) => {
+        setDatafromkarlliku(data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        setLoading(false)
+      })
+  }, [selectedOption])
 
   return (
     <div className="app">
@@ -47,6 +67,10 @@ function App() {
           {datafromkarlliku && (
             <DataDisplay input={input} datafromkarlliku={datafromkarlliku} />
           )}
+          <CityOptions
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+          />
         </div>
       </div>
     </div>
