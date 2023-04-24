@@ -50,3 +50,11 @@ code {
   display: flex;
   flex-direction: column;
 }
+.select {
+  background: #c5c5c5;
+  border-radius: 7px;
+  border: none;
+  padding: 0.4rem 2rem 0.4rem 1rem;
+  cursor: pointer;
+  margin: 7px;
+}

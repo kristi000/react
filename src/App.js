@@ -63,14 +63,14 @@ function App() {
             setInput={setInput}
             handleSearch={handleSearch}
           />
-          {loading && <div>patate</div>}
-          {datafromkarlliku && (
-            <DataDisplay input={input} datafromkarlliku={datafromkarlliku} />
-          )}
           <CityOptions
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
           />
+          {loading && <div>patate</div>}
+          {datafromkarlliku && (
+            <DataDisplay input={input} datafromkarlliku={datafromkarlliku} />
+          )}
         </div>
       </div>
     </div>

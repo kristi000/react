@@ -24,7 +24,7 @@ const CityOptions = ({ selectedOption, setSelectedOption }) => {
 
   return (
     <div>
-      <select value={selectedOption} onChange={handleChange}>
+      <select className="select" value={selectedOption} onChange={handleChange}>
         {cities?.map((city) => {
           console.log(city)
           return <option value={city}>{city}</option>
